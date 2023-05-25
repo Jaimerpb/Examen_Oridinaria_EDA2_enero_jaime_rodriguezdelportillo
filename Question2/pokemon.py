@@ -5,56 +5,21 @@ class Pokemon:
         print(f"Se ha creado el Pokémon {self.nombre} de tipo {self.tipo} con éxito.")
 
     def clasificacion(self):
-        if self.tipo == "Agua":
+        clasificacion_dict = {
+            "Agua": ["PS", "Ataque", "Defensa", "Ataque Especial", "Defensa Especial", "Velocidad"],
+            "Fuego": ["PS", "Ataque", "Defensa", "Ataque Especial", "Defensa Especial", "Velocidad"],
+            "Tierra": ["PS", "Ataque", "Defensa", "Ataque Especial", "Defensa Especial", "Velocidad"],
+            "Eléctrico": ["PS", "Ataque", "Defensa", "Ataque Especial", "Defensa Especial", "Velocidad"],
+            "Normal": ["PS", "Ataque", "Defensa", "Ataque Especial", "Defensa Especial", "Velocidad"],
+            "Fantasma": ["PS", "Ataque", "Defensa", "Ataque Especial", "Defensa Especial", "Velocidad"]
+        }
+        if self.tipo in clasificacion_dict:
             print("Clasificación:")
-            print("- PS: Puntos de Salud")
-            print("- Ataque")
-            print("- Defensa")
-            print("- Ataque Especial")
-            print("- Defensa Especial")
-            print("- Velocidad")
-        elif self.tipo == "Fuego":
-            print("Clasificación:")
-            print("- PS: Puntos de Salud")
-            print("- Ataque")
-            print("- Defensa")
-            print("- Ataque Especial")
-            print("- Defensa Especial")
-            print("- Velocidad")
-        elif self.tipo == "Tierra":
-            print("Clasificación:")
-            print("- PS: Puntos de Salud")
-            print("- Ataque")
-            print("- Defensa")
-            print("- Ataque Especial")
-            print("- Defensa Especial")
-            print("- Velocidad")
-        elif self.tipo == "Eléctrico":
-            print("Clasificación:")
-            print("- PS: Puntos de Salud")
-            print("- Ataque")
-            print("- Defensa")
-            print("- Ataque Especial")
-            print("- Defensa Especial")
-            print("- Velocidad")
-        elif self.tipo == "Normal":
-            print("Clasificación:")
-            print("- PS: Puntos de Salud")
-            print("- Ataque")
-            print("- Defensa")
-            print("- Ataque Especial")
-            print("- Defensa Especial")
-            print("- Velocidad")
-        elif self.tipo == "Fantasma":
-            print("Clasificación:")
-            print("- PS: Puntos de Salud")
-            print("- Ataque")
-            print("- Defensa")
-            print("- Ataque Especial")
-            print("- Defensa Especial")
-            print("- Velocidad")
+            for atributo in clasificacion_dict[self.tipo]:
+                print("-", atributo)
         else:
             print("Tipo de Pokémon desconocido.")
+
 
 
 
