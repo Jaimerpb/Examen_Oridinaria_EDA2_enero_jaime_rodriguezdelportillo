@@ -36,14 +36,11 @@ def print_solution(solution):
         print("")
 
 
-n = 4
-solutions = n_pokeballs_solution(n)
+pokeballs = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 15]
 
-print("Soluciones distintas:", len(solutions))
-print("Todas las soluciones:")
-for solution in solutions:
-    print_solution([solution])
-    print("")
-
-print("Una solución:")
-print_solution([solutions[0]])
+for n in pokeballs:
+    print(f"--- Solutions for {n} pokeballs ---")
+    solution = n_pokeballs_solution(n)
+    print_solution(solution)
+    print(f"Total solutions: {len(solution)}")
+    print("===============================")
