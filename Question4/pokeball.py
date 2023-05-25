@@ -1,3 +1,6 @@
+import csv
+from datetime import datetime
+
 class Pokeball:
     def __init__(self, peso, nombre, precio, fecha_fabricacion):
         self.peso = peso
@@ -7,48 +10,35 @@ class Pokeball:
         print("¡Se ha creado una Pokeball con éxito!")
 
     def __str__(self):
-        return "Información de la Pokeball:\n" \
-               "Peso: {}\n" \
-               "Nombre: {}\n" \
-               "Precio: {}\n" \
-               "Fecha de fabricación: {}\n".format(self.peso, self.nombre, self.precio, self.fecha_fabricacion)
+        return f"Información de la Pokeball:\n" \
+               f"Peso: {self.peso}\n" \
+               f"Nombre: {self.nombre}\n" \
+               f"Precio: {self.precio}\n" \
+               f"Fecha de fabricación: {self.fecha_fabricacion}\n"
 
+# Crear algunas Pokeballs
+pokeball1 = Pokeball(50, "Ultra Ball", 200, datetime(2023, 5, 1))
+pokeball2 = Pokeball(30, "Great Ball", 100, datetime(2023, 4, 15))
+pokeball3 = Pokeball(20, "Poke Ball", 50, datetime(2023, 6, 1))
 
-class TablaHashPokeballs:
-    def __init__(self):
-        self.pokeballs = {}
+pokeballs = [pokeball1, pokeball2, pokeball3]
 
-    def agregar_pokeball(self, pokeball):
-        self.pokeballs[pokeball.nombre] = pokeball
+# Mostrar los datos de las Pokeballs ordenadas por su fecha de fabricación
+sorted_pokeballs = sorted(pokeballs, key=lambda x: x.fecha_fabricacion)
+for pokeball in sorted_pokeballs:
+    print(pokeball)
 
-    def mostrar_ordenado_por_fecha(self):
-        sorted_list = sorted(self.pokeballs.values(), key=lambda x: x.fecha_fabricacion)
-        for pokeball in sorted_list:
-            print(pokeball)
+# Modificar el precio de una Pokeball
+pokeball1.precio = 250
+print("Precio de la Pokeball 'Ultra Ball' modificado.")
 
-    def modificar_precio(self, nombre, nuevo_precio):
-        if nombre in self.pokeballs:
-            self.pokeballs[nombre].precio = nuevo_precio
-            print("El precio de la Pokeball '{}' se ha modificado con éxito.".format(nombre))
-        else:
-            print("No se encontró una Pokeball con el nombre '{}' en la tabla.".format(nombre))
+# Crear un archivo CSV con los datos de las Pokeballs
+csv_filename = "pokeballs.csv"
+with open(csv_filename, mode="w", newline="") as file:
+    writer = csv.writer(file)
+    writer.writerow(["Peso", "Nombre", "Precio", "Fecha de fabricación"])  # Escribir encabezados
+    for pokeball in pokeballs:
+        writer.writerow([pokeball.peso, pokeball.nombre, pokeball.precio, pokeball.fecha_fabricacion])
 
+print(f"Se ha creado el archivo CSV '{csv_filename}' con los datos de las Pokeballs.")
 
-tabla_pokeballs = TablaHashPokeballs()
-
-pokeball1 = Pokeball(0.1, "Pokeball Roja", 200, "2023-05-20")
-pokeball2 = Pokeball(0.2, "Pokeball Azul", 300, "2023-05-22")
-pokeball3 = Pokeball(0.3, "Pokeball Verde", 250, "2023-05-25")
-
-tabla_pokeballs.agregar_pokeball(pokeball1)
-tabla_pokeballs.agregar_pokeball(pokeball2)
-tabla_pokeballs.agregar_pokeball(pokeball3)
-
-print("Pokeballs ordenadas por fecha de fabricación:")
-tabla_pokeballs.mostrar_ordenado_por_fecha()
-
-
-tabla_pokeballs.modificar_precio("Pokeball Azul", 350)
-
-print("\nPokeballs ordenadas por fecha de fabricación (después de modificar el precio):")
-tabla_pokeballs.mostrar_ordenado_por_fecha()
