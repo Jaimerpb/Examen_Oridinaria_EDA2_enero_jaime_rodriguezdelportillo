@@ -3,6 +3,7 @@ class Pokemon:
     def __init__(self, nombre, tipo):
         self.nombre = nombre
         self.tipo = tipo
+        print()
         
    def clasificacion(self):
         if self.tipo == "Agua":
@@ -59,4 +60,3 @@ class Pokemon:
         else:
             print("Tipo de Pokémon desconocido.")
 
-            
